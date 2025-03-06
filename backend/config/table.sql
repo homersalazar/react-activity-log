@@ -5,6 +5,6 @@ CREATE TABLE activity_log (
     subject_id BIGINT(20) UNSIGNED NOT NULL, -- id of the table that modified, added, or deleted
     causer_id BIGINT(20) UNSIGNED NOT NULL, -- user who performed the action 
     properties LONGTEXT NOT NULL, -- details of what was done
-    created_at TIMESTAMP NULL DEFAULT NULL,
-    updated_at TIMESTAMP NULL DEFAULT NULL
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL
 );

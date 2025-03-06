@@ -7,14 +7,24 @@ exports.getAllActivityLog = function (req, res) {
   });
 };
 
+// Add this method to handle saving the activity log
 exports.createActivityLog = function (req, res) {
-  const newTodo = {
-    title: req.body.title,
-    completed: req.body.completed,
+  const { subject_type, event, subject_id, causer_id, properties } = req.body;
+
+  const logData = {
+    subject_type,
+    event,
+    subject_id,
+    causer_id,
+    properties,
   };
 
-  Todo.createActivityLog(newTodo, (err, result) => {
-    if (err) throw err;
-    res.json({ message: "Todo created successfully" });
+  activityLog.createActivityLog(logData, (err, result) => {
+    if (err) {
+      console.error("Error saving activity log:", err);
+      res.status(500).json({ message: "Internal Server Error" });
+      return;
+    }
+    res.json({ message: "Activity log saved successfully" });
   });
 };

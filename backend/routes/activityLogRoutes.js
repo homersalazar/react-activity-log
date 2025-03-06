@@ -4,6 +4,6 @@ const activityLogController = require("../controllers/activityLogController");
 
 // Routes
 router.get("/", activityLogController.getAllActivityLog);
-router.post("/", activityLogController.createActivityLog);
+router.post("/log", activityLogController.createActivityLog);
 
 module.exports = router;
