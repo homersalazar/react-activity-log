@@ -1,4 +1,5 @@
 Project Overview
+
 This project is a React application that allows users to view, create, edit, and delete posts. It also logs activities such as creating, updating, and deleting posts to an activity log. The project uses the following technologies:
 
 • React: For building the user interface.
