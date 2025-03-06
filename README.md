@@ -8,6 +8,7 @@ This project is a React application that allows users to view, create, edit, and
 • Express: For the backend server handling activity logs.
 
 Project Structure
+
 ![image](https://github.com/user-attachments/assets/c27a8732-336c-4eea-a36c-0753b6f96755)
 
 Key Files and Their Purpose
