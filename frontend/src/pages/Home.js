@@ -68,25 +68,19 @@ const Home = () => {
       );
       const postData = postResponse.data;
 
-      const updatedPost = { ...postData, body: editedText }; // Update other fields as needed
-
-      // Determine which fields have changed
-      const changedFields = {};
-      for (const key in updatedPost) {
-        if (updatedPost[key] !== postData[key]) {
-          changedFields[key] = { old: postData[key], new: updatedPost[key] };
-        }
-      }
-
       const loggers = {
         subject_type: "Posts",
         event: "Updated",
         subject_id: id,
         causer_id: 1,
-        properties: JSON.stringify(changedFields),
+        properties: JSON.stringify({
+          old: postData,
+          new: { body: editedText },
+        }),
       };
       await axios.post(`http://localhost:3002/activity/log`, loggers);
 
+      const updatedPost = { ...postData, body: editedText };
       await axios.put(
         `https://jsonplaceholder.typicode.com/posts/${id}`,
         updatedPost
@@ -95,6 +89,11 @@ const Home = () => {
       setPosts(posts.map((post) => (post.id === id ? updatedPost : post)));
       setEditingPostId(null);
       setEditedText("");
+      Swal.fire({
+        title: "Updated!",
+        text: "Your file has been updated.",
+        icon: "success",
+      });
     } catch (error) {
       console.log(error);
     }
